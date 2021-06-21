@@ -44,7 +44,9 @@ class LoginAPI {
             do {
                 guard let code = response?.getStatusCode(), code == 200 else {
                     let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get token"])
-                    self.loginResponseDelegate?.onVarificationResponse(token: nil, error: err)
+                    DispatchQueue.main.async {
+                        self.loginResponseDelegate?.onVarificationResponse(token: nil, error: err)
+                    }
                     return
                 }
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>

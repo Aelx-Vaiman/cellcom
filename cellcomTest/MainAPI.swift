@@ -39,16 +39,21 @@ class MainAPI {
             do {
                 guard let code = response?.getStatusCode(), code == 200 else {
                     let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
-                    self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
+                    DispatchQueue.main.async {
+                        self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
+                    }
                     return
                 }
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                self.mainAPIResponseDelegate?.onBranchesResponse(data: json, error: nil)
-            
+                DispatchQueue.main.async {
+                    self.mainAPIResponseDelegate?.onBranchesResponse(data: json, error: nil)
+                }
             } catch {
                 DispatchQueue.main.async {
                     let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
-                    self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
+                    DispatchQueue.main.async {
+                        self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
+                    }
                 }
             }
         })
