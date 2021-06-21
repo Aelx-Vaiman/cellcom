@@ -19,7 +19,7 @@ class MainAPI {
     internal func getBranches(location: CLLocation) {
         
         guard let token = UserDefaults.standard.string(forKey: LoginViewController.savedTokenKey) else {
-            let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "no valid token"])
+            let err = NSError(domain: "MainApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "no valid token"])
             self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
             return
         }
@@ -38,7 +38,7 @@ class MainAPI {
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
                 guard let code = response?.getStatusCode(), code == 200 else {
-                    let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
+                    let err = NSError(domain: "MainApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
                     DispatchQueue.main.async {
                         self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
                     }
@@ -50,7 +50,7 @@ class MainAPI {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    let err = NSError(domain: "LoginApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
+                    let err = NSError(domain: "MainApi", code: 401, userInfo: [ NSLocalizedDescriptionKey: "failed get branches"])
                     DispatchQueue.main.async {
                         self.mainAPIResponseDelegate?.onBranchesResponse(data: nil, error: err)
                     }
