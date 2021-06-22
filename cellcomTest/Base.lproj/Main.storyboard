@@ -109,7 +109,7 @@
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="settingTupped:" destination="2IA-DD-hKG" eventType="touchUpInside" id="gKg-Oh-oIb"/>
+                                    <action selector="settingsTapped:" destination="2IA-DD-hKG" eventType="touchUpInside" id="2fj-mN-etZ"/>
                                 </connections>
                             </button>
                         </subviews>

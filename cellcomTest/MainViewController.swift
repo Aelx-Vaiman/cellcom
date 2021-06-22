@@ -40,7 +40,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainAPIRe
     
     private func updateAuthorization(status: CLAuthorizationStatus, accuracyAuthorization: CLAccuracyAuthorization) {
         if status == .authorizedAlways && accuracyAuthorization == .fullAccuracy {
-            locationPermitionReady()
+            locationPermissionReady()
             return
         }
         
@@ -49,15 +49,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, MainAPIRe
         }
         
         self.settingsButton.isHidden = false
-        //else somthing mithing
+        //else somthing missing
     }
     
-    private func locationPermitionReady() {
+    private func locationPermissionReady() {
         self.settingsButton.isHidden = true
         self.mainAPI.getBranches(location: locationManager.location ?? CLLocation.init())
     }
     
-    @IBAction func settingTupped(_ sender: Any) {
+    @IBAction func settingsTapped(_ sender: Any) {
         if let url = URL.init(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
